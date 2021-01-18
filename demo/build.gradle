@@ -1,0 +1,43 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//redis
+	implementation 'org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE'
+	//lombok
+	implementation 'org.projectlombok:lombok:1.16.4'
+	// これらは自動生成クラスが import しているので必要
+    // implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // implementation 'org.openapitools:jackson-databind-nullable:0.2.1'
+    // compileOnly 'io.swagger:swagger-annotations:1.6.2'
+	// //swagger-ui 導入
+	// implementation "io.springfox:springfox-boot-starter:3.0.0"
+	implementation project(':client')
+	//junit
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+test {
+	useJUnitPlatform()
+	testLogging.showStandardStreams=true
+	testLogging {
+		events "passed","skipped","failed"
+	}
+}
+
+
